@@ -1,10 +1,8 @@
-'use scrict';
-
 const printInvalidValue = function(minValue, maxValue) {
   return `${minValue  } меньше нуля или больше ${  maxValue}`;
 };
 
-const getRamdomNumber = function(minNumber, maxNumber) {
+const getRandomNumber = function(minNumber, maxNumber) {
   if (minNumber < 0 || minNumber >= maxNumber) {
     return printInvalidValue(minNumber, maxNumber);
   }
@@ -12,9 +10,9 @@ const getRamdomNumber = function(minNumber, maxNumber) {
 };
 
 
-getRamdomNumber(0, 2);
+getRandomNumber(0, 2);
 
-const getFractionalRamdomNumber = function(minNumber, maxNumber, digit) {
+const getFractionalRandomNumber = function(minNumber, maxNumber, digit) {
   if (minNumber < 0 || minNumber >= maxNumber) {
     return printInvalidValue(minNumber, maxNumber);
   }
@@ -22,4 +20,4 @@ const getFractionalRamdomNumber = function(minNumber, maxNumber, digit) {
 };
 
 
-getFractionalRamdomNumber(4.1, 1.2, 10);
+getFractionalRandomNumber(4.1, 1.2, 10);
