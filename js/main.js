@@ -6,7 +6,8 @@ const CHECKS_TIME = ['12:00', '13:00', '14:00'];
 
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 
-const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+const PHOTOS = [
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
 ];
@@ -42,16 +43,14 @@ const getAvatarAddress = () => {
   return `img/avatars/user${  number  }.png`;
 };
 
-const getRandomMassive = (baseMassive) => {
-  const length = getRandomPositiveInteger(1, baseMassive.length);
-  const newMassive = [];
+const getRandomArray = (baseArray) => {
+  const length = getRandomPositiveInteger(1, baseArray.length);
+  const newArray = new Set ([]);
   for (let i = 0; i < length; i++) {
-    const randomElement = getRandomPositiveInteger(0, baseMassive.length - 1);
-    if(!newMassive.includes(baseMassive[randomElement])){
-      newMassive.push(baseMassive[randomElement]);
-    }
+    const randomElement = getRandomPositiveInteger(0, baseArray.length - 1);
+    newArray.add(baseArray[randomElement]);
   }
-  return newMassive;
+  return [...newArray];
 };
 
 const createObject = () => {
@@ -74,21 +73,21 @@ const createObject = () => {
       guests: getRandomPositiveInteger(1, 10),
       checkin: CHECKS_TIME[getRandomPositiveInteger(0, CHECKS_TIME.length - 1)],
       checkout: CHECKS_TIME[getRandomPositiveInteger(0, CHECKS_TIME.length - 1)],
-      features: getRandomMassive(FEATURES),
+      features: getRandomArray(FEATURES),
       description: 'батоны ЗАМЕЧАТЕЛЬНЫЕ в 10 часов приезжают',
-      photos: getRandomMassive(PHOTOS)
+      photos: getRandomArray(PHOTOS)
     }
   };
   return mapObject;
 };
 
 
-const createMassiveData = (amount) => {
-  const massiveData = [];
+const createTestData = (amount) => {
+  const arrayData = [];
   for (let i = 0; i <= amount - 1; i++) {
-    massiveData.push(createObject());
+    arrayData.push(createObject());
   }
-  return massiveData;
+  return arrayData;
 };
 
-createMassiveData(10);
+createTestData(10);
