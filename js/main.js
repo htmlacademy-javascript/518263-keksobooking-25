@@ -1,3 +1,3 @@
 import {createTestData} from './data.js';
 
-console.log(createTestData(10));
+createTestData(10);
