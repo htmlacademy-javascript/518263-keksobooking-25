@@ -1,4 +1,4 @@
-import {dataConst} from './const.js';
+import {TYPE, CHECKS_TIME, FEATURES, PHOTOS} from './const.js';
 import  {getRandomPositiveInteger, getRandomPositiveFloat, getRandomArray} from './util.js';
 
 const getAvatarAddress = () => {
@@ -10,7 +10,7 @@ const getAvatarAddress = () => {
 };
 
 
-const createObject = ({TYPE, CHECKS_TIME, FEATURES, PHOTOS}) => {
+const createObject = () => {
   const latCoordinate = getRandomPositiveFloat(35.65000, 35.70000, 5);
   const lagCoordinate = getRandomPositiveFloat(139.70000, 139.80000, 5);
   const mapObject = {
@@ -41,7 +41,7 @@ const createObject = ({TYPE, CHECKS_TIME, FEATURES, PHOTOS}) => {
 const createTestData = (amount) => {
   const arrayData = [];
   for (let i = 0; i <= amount - 1; i++) {
-    arrayData.push(createObject(dataConst));
+    arrayData.push(createObject());
   }
   return arrayData;
 };
