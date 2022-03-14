@@ -1,5 +1,12 @@
 
-const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+
+const TRANSLATED_TYPES = {flat: 'Квартира',
+  bungalow: 'Бунгало',
+  house: 'Дом',
+  palace: 'Дворец',
+  hotel: 'Отель'
+};
 
 const CHECKS_TIME = ['12:00', '13:00', '14:00'];
 
@@ -11,4 +18,4 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
 ];
 
-export {TYPE, CHECKS_TIME, FEATURES, PHOTOS};
+export {TYPES, CHECKS_TIME, FEATURES, PHOTOS, TRANSLATED_TYPES};

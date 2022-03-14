@@ -1,3 +1,7 @@
+import {createCard} from './card.js';
 import {createTestData} from './data.js';
 
-createTestData(10);
+const testData = createTestData(10);
+
+
+createCard(testData[0]);
