@@ -19,7 +19,7 @@ const getRandomPositiveFloat =  (a, b, digits = 1) => {
 };
 
 const getRandomArray = (baseArray) => {
-  const length = getRandomPositiveInteger(1, baseArray.length);
+  const length = getRandomPositiveInteger(0, baseArray.length);
   const newArray = new Set ([]);
   for (let i = 0; i < length; i++) {
     const randomElement = getRandomPositiveInteger(0, baseArray.length - 1);
