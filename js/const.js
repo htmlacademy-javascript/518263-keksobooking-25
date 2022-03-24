@@ -1,7 +1,8 @@
 
 const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 
-const TRANSLATED_TYPES = {flat: 'Квартира',
+const TRANSLATED_TYPES = {
+  flat: 'Квартира',
   bungalow: 'Бунгало',
   house: 'Дом',
   palace: 'Дворец',
@@ -18,4 +19,19 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
 ];
 
-export {TYPES, CHECKS_TIME, FEATURES, PHOTOS, TRANSLATED_TYPES};
+const TYPES_PRICE = {
+  'bungalow': 0,
+  'flat': 1000,
+  'hotel': 3000,
+  'house': 5000,
+  'palace': 10000
+};
+
+const ROOMS_AND_GUEST = {
+  1: ['1'],
+  2: ['1', '2'],
+  3: ['1', '2', '3'],
+  100: ['0']
+};
+
+export {TYPES, CHECKS_TIME, FEATURES, PHOTOS, TRANSLATED_TYPES, TYPES_PRICE, ROOMS_AND_GUEST};
