@@ -1,6 +1,6 @@
 import {createCard} from './card.js';
 import {createTestData} from './data.js';
-import {disacticeMode, activeMode} from './mode.js';
+import {disableMode, activeMode} from './mode.js';
 
 const map = document.querySelector('.map');
 
@@ -8,6 +8,6 @@ const testData = createTestData(10);
 
 createCard(testData[0]);
 
-disacticeMode();
+disableMode();
 
 map.addEventListener ('click', activeMode);

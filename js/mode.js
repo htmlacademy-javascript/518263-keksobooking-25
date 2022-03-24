@@ -5,7 +5,7 @@ const fieldSets = form.querySelectorAll('.ad-form__element');
 const mapFilters = document.querySelector('.map__filters');
 const mapFiltersFields = Array.from(mapFilters.children);
 
-const disacticeMode = () => {
+const disableMode = () => {
 
   const disableActiveField =(field) => {
     field.setAttribute('disabled', 'disabled');
@@ -25,17 +25,12 @@ const disacticeMode = () => {
 const activeMode = () => {
 
   form.classList.remove('ad-form--disabled');
-  fieldSets.forEach((item) => {
-    item.removeAttribute('disabled');
-  });
-
   mapFilters.classList.remove('map__filters--disabled');
-  mapFiltersFields.forEach((item) => {
-    item.removeAttribute('disabled');
-  });
+
+  [...fieldSets, ...mapFiltersFields].forEach((item) => item.removeAttribute('disabled'));
 
   validateForm();
 
 };
 
-export {disacticeMode, activeMode};
+export {disableMode, activeMode};
