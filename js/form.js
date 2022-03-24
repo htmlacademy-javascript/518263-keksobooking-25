@@ -56,7 +56,7 @@ const validateForm = () => {
   }
 
   roomNumberField.addEventListener('change', validateRoomsGuest);
-  guestsCapacityField.addEventListener('change', validateRoomsGuest)
+  guestsCapacityField.addEventListener('change', validateRoomsGuest);
 
   //========================Валидация типа и цены========================
 
@@ -98,7 +98,7 @@ const validateForm = () => {
   const timeinField = adForm.querySelector('#timein');
   const timeoutField = adForm.querySelector('#timeout');
 
-  const timeField = adForm.querySelector('.ad-form__element--time')
+  const timeField = adForm.querySelector('.ad-form__element--time');
 
   timeField.addEventListener('change', (evt) => {
     switch (evt.target.value) {
