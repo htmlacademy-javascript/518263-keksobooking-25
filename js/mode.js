@@ -2,6 +2,7 @@ import { validateForm } from './form.js';
 
 const form = document.querySelector('.ad-form');
 const fieldSets = form.querySelectorAll('.ad-form__element');
+
 const mapFilters = document.querySelector('.map__filters');
 const mapFiltersFields = Array.from(mapFilters.children);
 
