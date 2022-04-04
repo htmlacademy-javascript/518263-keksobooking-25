@@ -1,8 +1,6 @@
 
 import {TRANSLATED_TYPES} from './const.js';
 
-
-const map = document.querySelector('#map-canvas');
 const cardTemplate = document.querySelector('#card')
   .content;
 
@@ -38,8 +36,6 @@ const getPhotos = (photos, card) => {
   }
 };
 
-const cardFragment = document.createDocumentFragment();
-
 const createCard = (data) => {
   const card = cardTemplate.cloneNode(true);
   card.querySelector('.popup__title').textContent = data.offer.title;
@@ -52,9 +48,7 @@ const createCard = (data) => {
   card.querySelector('.popup__description').textContent = data.offer.description;
   getPhotos(data.offer.photos, card);
   card.querySelector('.popup__avatar').src = data.author.avatar;
-
-  cardFragment.append(card);
-  map.append(cardFragment);
+  return card;
 };
 
 

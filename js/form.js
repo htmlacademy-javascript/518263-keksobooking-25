@@ -86,6 +86,38 @@ const validateForm = () => {
     pristine.validate(priceField);
   }
 
+  const slider = adForm.querySelector('.ad-form__slider');
+
+  noUiSlider.create(slider, {
+    range: {
+      min: 0,
+      max: 100000,
+    },
+    start: priceField.min,
+    step: 1,
+    connect: 'lower',
+    format: {
+      to: function (value) {
+        return value.toFixed(0);
+      },
+      from: function (value) {
+        return value;
+      },
+    },
+  });
+
+  slider.noUiSlider.on('update', () => {
+    priceField.value = slider.noUiSlider.get();
+    checkType();
+    validatePrice();
+  });
+
+  priceField.addEventListener('change', () => {
+    slider.noUiSlider.set(priceField.value);
+    checkType();
+    validatePrice();
+  });
+
   typeField.addEventListener('change', (evt) =>{
     if (evt.target.tagName === 'SELECT') {
       checkType();

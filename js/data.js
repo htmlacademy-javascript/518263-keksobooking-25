@@ -20,7 +20,7 @@ const createObject = () => {
     offer: {
       location: {
         lat: latCoordinate,
-        lag: lagCoordinate
+        lng: lagCoordinate
       },
       title: 'Хата что надо',
       address: `${latCoordinate  } широта ${   lagCoordinate   } долгота`,
