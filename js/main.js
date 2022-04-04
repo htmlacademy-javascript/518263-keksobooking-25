@@ -1,13 +1,6 @@
-import {createCard} from './card.js';
-import {createTestData} from './data.js';
-import {disableMode, activeMode} from './mode.js';
-
-const map = document.querySelector('.map');
-
-const testData = createTestData(10);
-
-createCard(testData[0]);
+import {disableMode} from './mode.js';
+import {loadMap} from './map.js';
 
 disableMode();
 
-map.addEventListener ('click', activeMode);
+loadMap();
