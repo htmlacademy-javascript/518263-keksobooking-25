@@ -2,7 +2,7 @@
 import {TRANSLATED_TYPES} from './const.js';
 
 const cardTemplate = document.querySelector('#card')
-  .content;
+  .content.querySelector('.popup');
 
 
 const featuresCheck = (cardFeatures, card) => {
