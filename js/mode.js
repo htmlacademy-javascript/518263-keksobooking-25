@@ -8,7 +8,7 @@ const mapFiltersFields = Array.from(mapFilters.children);
 
 const disableMode = () => {
 
-  const disableActiveField =(field) => {
+  const disableActiveField = (field) => {
     field.setAttribute('disabled', 'disabled');
   };
 
