@@ -1,6 +1,8 @@
 
-const escKeydown  = (evt) => {
-  if (evt.key === 'Escape'){
+const checkEscapeKey = (evt) => evt.key === 'Escape';
+
+const isPressedEskKey  = () => {
+  if (checkEscapeKey){
     removePopup();
   }
 };
@@ -9,10 +11,17 @@ const onClick = () => {
   removePopup();
 };
 
+
 function removePopup  () {
+  const leafletPopup =  document.querySelector('.leaflet-popup');
+
+  if (leafletPopup) {
+    leafletPopup.remove();
+  }
+
   document.querySelector('.popup').remove();
   document.removeEventListener('click', onClick);
-  document.removeEventListener('click', escKeydown);
+  document.removeEventListener('click', isPressedEskKey);
 }
 
 const showPopup = (result) => {
@@ -20,7 +29,7 @@ const showPopup = (result) => {
     .content.querySelector(`.${  result}`).cloneNode(true);
   document.body.append(messageTemplate);
   document.addEventListener('click', onClick);
-  document.addEventListener('click', escKeydown);
+  document.addEventListener('click', isPressedEskKey);
 };
 
 
@@ -36,4 +45,4 @@ const showSuccessMessage = () => {
 };
 
 
-export {showErrorMessage, showSuccessMessage};
+export {showErrorMessage, showSuccessMessage, removePopup};

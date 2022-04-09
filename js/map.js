@@ -81,6 +81,7 @@ const loadMap = (pinsCount) => {
   getData(createPin, showAlert, pinsCount);
 };
 
+
 const resetMap = () => {
   map.setView({
     lat: TOKYO_CENTER_POINT.lat,

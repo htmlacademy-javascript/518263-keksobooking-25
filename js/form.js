@@ -1,6 +1,6 @@
 import {TYPES_PRICE, ROOMS_AND_GUEST} from './const.js';
 import {sendData} from './api.js';
-import {showErrorMessage, showSuccessMessage} from './popup.js';
+import {showErrorMessage, showSuccessMessage, removePopup} from './popup.js';
 import {resetMap} from './map.js';
 
 const adForm = document.querySelector('.ad-form');
@@ -167,6 +167,10 @@ const validateForm = () => {
         () => {
           showSuccessMessage();
           unblockSubmitButton();
+
+          setTimeout( () => {
+            removePopup();
+          }, 2000);
         },
         () => {
           showErrorMessage();
@@ -179,9 +183,9 @@ const validateForm = () => {
 
 };
 
-const resetButtonClick = () => {
+const resetButtonClick = (count) => {
   adForm.reset();
-  resetMap();
+  resetMap(count);
   slider.noUiSlider.reset();
 };
 
