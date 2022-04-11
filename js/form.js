@@ -1,8 +1,13 @@
 import {TYPES_PRICE, ROOMS_AND_GUEST} from './const.js';
+import {sendData} from './api.js';
+import {showErrorMessage, showSuccessMessage, removePopup} from './popup.js';
+import {resetMap} from './map.js';
+
+const adForm = document.querySelector('.ad-form');
+
+const slider = adForm.querySelector('.ad-form__slider');
 
 const validateForm = () => {
-
-  const adForm = document.querySelector('.ad-form');
 
   const pristine = new Pristine(adForm, {
     classTo: 'ad-form__element',
@@ -73,7 +78,7 @@ const validateForm = () => {
   function getMinPrice(){
     const type = typeField.value;
     priceField.min = TYPES_PRICE[type];
-    return TYPES_PRICE[type] < priceField.value;
+    return TYPES_PRICE[type] <= priceField.value;
   }
 
   function getErrorPriceMessage() {
@@ -85,8 +90,6 @@ const validateForm = () => {
   function validatePrice() {
     pristine.validate(priceField);
   }
-
-  const slider = adForm.querySelector('.ad-form__slider');
 
   noUiSlider.create(slider, {
     range: {
@@ -143,13 +146,51 @@ const validateForm = () => {
     }
   });
 
+  const submitButton = document.querySelector('.ad-form__submit');
+
+  const blockSubmitButton = () => {
+    submitButton.disabled = true;
+    submitButton.textContent = 'Отправляю...';
+  };
+
+  const unblockSubmitButton = () => {
+    submitButton.disabled = false;
+    submitButton.textContent = 'Опубликовать';
+  };
+
 
   adForm.addEventListener('submit', (evt) => {
-    if (!pristine.validate()) {
-      evt.preventDefault();
+    evt.preventDefault();
+    if (pristine.validate()) {
+      blockSubmitButton();
+      sendData(
+        () => {
+          showSuccessMessage();
+          unblockSubmitButton();
+
+          setTimeout( () => {
+            removePopup();
+          }, 2000);
+        },
+        () => {
+          showErrorMessage();
+          unblockSubmitButton();
+        },
+        new FormData(evt.target)
+      );
     }
   });
 
 };
 
-export {validateForm};
+const resetButtonClick = (count) => {
+  adForm.reset();
+  resetMap(count);
+  slider.noUiSlider.reset();
+};
+
+const resetButton = document.querySelector('.ad-form__reset');
+
+resetButton.addEventListener('click', resetButtonClick);
+
+export {validateForm, resetButtonClick};

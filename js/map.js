@@ -1,13 +1,33 @@
 import {activeMode} from './mode.js';
 import {TOKYO_CENTER_POINT} from './const.js';
-import {createTestData} from './data.js';
-import { createCard } from './card.js';
+import {createCard} from './card.js';
+import {getData} from './api.js';
+import {showAlert} from './util.js';
 
-const loadMap = () => {
+const map = L.map('map-canvas');
+
+const mainPinIcon = L.icon({
+  iconUrl: './img/main-pin.svg',
+  iconSize: [52, 52],
+  iconAnchor: [26, 52],
+});
+
+const mainPin = L.marker(
+  {
+    lat: TOKYO_CENTER_POINT.lat,
+    lng:  TOKYO_CENTER_POINT.lng,
+  },
+  {
+    draggable: true,
+    icon: mainPinIcon,
+  }
+);
+
+const loadMap = (pinsCount) => {
 
   const adress = document.querySelector('#address');
 
-  const map = L.map('map-canvas')
+  map
     .on('load', () => {
       activeMode();
       adress.value = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
@@ -24,22 +44,6 @@ const loadMap = () => {
     },
   ).addTo(map);
 
-  const mainPinIcon = L.icon({
-    iconUrl: './img/main-pin.svg',
-    iconSize: [52, 52],
-    iconAnchor: [26, 52],
-  });
-
-  const mainPin = L.marker(
-    {
-      lat: TOKYO_CENTER_POINT.lat,
-      lng:  TOKYO_CENTER_POINT.lng,
-    },
-    {
-      draggable: true,
-      icon: mainPinIcon,
-    }
-  );
 
   mainPin.addTo(map);
 
@@ -48,8 +52,6 @@ const loadMap = () => {
     const lngPoint = evt.target.getLatLng().lng.toFixed(5);
     adress.value = `${latPoint  } ${ lngPoint}`;
   });
-
-  const testData = createTestData(10);
 
   const adPinIcon = L.icon ({
     iconUrl: './img/pin.svg',
@@ -61,8 +63,8 @@ const loadMap = () => {
 
 
   const createPin = (point) => {
-    const lat = point.offer.location.lat;
-    const lng = point.offer.location.lng;
+    const lat = point.location.lat;
+    const lng = point.location.lng;
     const marker = L.marker(
       {
         lat,
@@ -76,11 +78,19 @@ const loadMap = () => {
       .addTo(pinLayer)
       .bindPopup(createCard(point));
   };
-
-  testData.forEach((point) => {
-    createPin(point);
-  });
-
+  getData(createPin, showAlert, pinsCount);
 };
 
-export {loadMap};
+
+const resetMap = () => {
+  map.setView({
+    lat: TOKYO_CENTER_POINT.lat,
+    lng: TOKYO_CENTER_POINT.lng,
+  });
+  mainPin.setLatLng({
+    lat: TOKYO_CENTER_POINT.lat,
+    lng: TOKYO_CENTER_POINT.lng,
+  });
+};
+
+export {loadMap, resetMap};

@@ -8,7 +8,7 @@ const cardTemplate = document.querySelector('#card')
 const featuresCheck = (cardFeatures, card) => {
   const allFeatures = card.querySelectorAll('.popup__feature');
   const firstCardFeature = cardFeatures.offer.features;
-  if (firstCardFeature.length === 0) {
+  if (!firstCardFeature) {
     card.querySelector('.popup__features').classList.add('visually-hidden');
   } else {
     const modifidedFeatures = firstCardFeature.map((feature) => `popup__feature--${  feature}`);
@@ -24,7 +24,7 @@ const featuresCheck = (cardFeatures, card) => {
 
 const getPhotos = (photos, card) => {
   const photosContainer = card.querySelector('.popup__photos');
-  if (photos.length === 0) {
+  if (!photos) {
     photosContainer.classList.add('visually-hidden');
   } else {
     for (let i = 0; i < photos.length; i++) {
