@@ -18,11 +18,16 @@ const filterType = (item) => {
 
 const filterPrice = (item) => {
   switch (priceField.value) {
-    case 'low': return item.offer.price <= FILTER_PRICE.low;
+    case 'low': {
+      return item.offer.price <= FILTER_PRICE.low;
+    }
 
-    case 'middle': return item.offer.price >= FILTER_PRICE.low && item.offer.price <= FILTER_PRICE.high;
-
-    case 'high': return item.offer.price >= FILTER_PRICE.high;
+    case 'middle': {
+      return item.offer.price >= FILTER_PRICE.low && item.offer.price <= FILTER_PRICE.high;
+    }
+    case 'high': {
+      return item.offer.price >= FILTER_PRICE.high;
+    }
   }
 };
 

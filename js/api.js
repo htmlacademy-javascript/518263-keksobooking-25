@@ -2,12 +2,12 @@ import {resetButtonClick} from './form.js';
 import { getFiltredList } from './filter.js';
 
 
-const getData = (onSuccess, onFail, pinsCount) => {
+const getData = (onSuccess, onFail, PINS_COUNT) => {
   fetch('https://25.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
     .then((pins) => {
       getFiltredList(pins)
-        .slice(0, pinsCount)
+        .slice(0, PINS_COUNT)
         .forEach(onSuccess);
     })
     .catch(() => {

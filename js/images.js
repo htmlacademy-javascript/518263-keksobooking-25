@@ -27,7 +27,7 @@ const getAvatarPreview = () => {
     const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
     if (matches) {
-      previewAvatarContainer.innerHTML = '';
+      previewAvatarContainer.removeChild(previewAvatarContainer.children[0]);
       previewAvatarContainer.style.padding = 0;
       previewAvatarContainer.append(createImage(URL.createObjectURL(file)));
     }
@@ -46,6 +46,9 @@ const getHousePhotosPreview = () => {
     const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
     if (matches) {
+      if (housePhotosContainer.children.length > 0) {
+        housePhotosContainer.removeChild(housePhotosContainer.children[0]);
+      }
       housePhotosContainer.style.padding = 0;
       housePhotosContainer.append(createImage(URL.createObjectURL(file)));
     }
@@ -56,7 +59,9 @@ const resetPhotosreview = () => {
 
   previewAvatarContainer.innerHTML = defaultAvatarBackground;
   previewAvatarContainer.style.padding = defaultAvatarPadding;
-  housePhotosContainer.innerHTML = '';
+  if (housePhotosContainer.children.length > 0) {
+    housePhotosContainer.removeChild(housePhotosContainer.children[0]);
+  }
 };
 
 export {getAvatarPreview, getHousePhotosPreview, resetPhotosreview};
