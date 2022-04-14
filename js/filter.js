@@ -46,17 +46,14 @@ const filterGuest = (item) => {
 
 const filterFeatures = (item) => {
 
-  const selectedFeatures = document.querySelectorAll('.map__checkbox:checked');
+  const selectedFeatures = Array.from(document.querySelectorAll('.map__checkbox:checked'), (inp) => inp.value);
 
-  for (let i = 0; i < selectedFeatures.length; i++) {
-    if (item.offer.features) {
-      if (item.offer.features.includes(selectedFeatures[i].value)) {
-        return true;
-      }
+  if (item.offer.features)  {
+    if (selectedFeatures.every((feature) => item.offer.features.includes(feature))) {
+      return item;
     }
+    return false;
   }
-
-  return false;
 };
 
 
