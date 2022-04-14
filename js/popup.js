@@ -8,6 +8,7 @@ const isPressedEskKey  = () => {
 };
 
 const onClick = () => {
+
   removePopup();
 };
 
@@ -16,6 +17,7 @@ function removePopup  () {
   const leafletPopup =  document.querySelector('.leaflet-popup');
 
   if (leafletPopup) {
+
     leafletPopup.remove();
   }
 
