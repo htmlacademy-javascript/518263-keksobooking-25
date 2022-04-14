@@ -2,6 +2,8 @@ import {TYPES_PRICE, ROOMS_AND_GUEST} from './const.js';
 import {sendData} from './api.js';
 import {showErrorMessage, showSuccessMessage, removePopup} from './popup.js';
 import {resetMap} from './map.js';
+import {getAvatarPreview, getHousePhotosPreview, resetPhotosreview} from './images.js';
+
 
 const adForm = document.querySelector('.ad-form');
 
@@ -109,10 +111,16 @@ const validateForm = () => {
     },
   });
 
+
+  let isInit = true;
   slider.noUiSlider.on('update', () => {
+    if (isInit) {
+      isInit = false;
+    } else {
+      validatePrice();
+    }
     priceField.value = slider.noUiSlider.get();
     checkType();
-    validatePrice();
   });
 
   priceField.addEventListener('change', () => {
@@ -127,6 +135,13 @@ const validateForm = () => {
       validatePrice();
     }
   });
+
+  //========================Добавление фотографий========================
+
+  getAvatarPreview();
+
+  getHousePhotosPreview();
+
 
   //========================Валидация времени заезда и выезда========================
 
@@ -183,10 +198,11 @@ const validateForm = () => {
 
 };
 
-const resetButtonClick = (count) => {
+const resetButtonClick = () => {
   adForm.reset();
-  resetMap(count);
+  resetMap();
   slider.noUiSlider.reset();
+  resetPhotosreview();
 };
 
 const resetButton = document.querySelector('.ad-form__reset');

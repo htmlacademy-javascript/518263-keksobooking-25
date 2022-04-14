@@ -19,7 +19,9 @@ function removePopup  () {
     leafletPopup.remove();
   }
 
-  document.querySelector('.popup').remove();
+  if (document.querySelector('.popup')) {
+    document.querySelector('.popup').remove();
+  }
   document.removeEventListener('click', onClick);
   document.removeEventListener('click', isPressedEskKey);
 }

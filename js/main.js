@@ -1,9 +1,22 @@
 import {disableMode} from './mode.js';
+import {loadMap, createPin} from './map.js';
+import {showAlert} from './util.js';
+import {getData} from './api.js';
+import { debounce } from './util.js';
 
-import {loadMap} from './map.js';
-
-const PINS_COUNT = 10;
 
 disableMode();
 
-loadMap(PINS_COUNT);
+const mapFiltersForm = document.querySelector('.map__filters');
+
+const RERENDER_DELAY = 1000;
+
+const PINS_COUNT = 10;
+
+mapFiltersForm.addEventListener('change', () => {
+  loadMap();
+  debounce(getData(createPin, showAlert, PINS_COUNT), RERENDER_DELAY);
+});
+
+getData(createPin, showAlert, PINS_COUNT);
+loadMap();

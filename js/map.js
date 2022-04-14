@@ -1,10 +1,10 @@
 import {activeMode} from './mode.js';
 import {TOKYO_CENTER_POINT} from './const.js';
 import {createCard} from './card.js';
-import {getData} from './api.js';
-import {showAlert} from './util.js';
+
 
 const map = L.map('map-canvas');
+const mapFiltersForm = document.querySelector('.map__filters');
 
 const mainPinIcon = L.icon({
   iconUrl: './img/main-pin.svg',
@@ -23,7 +23,34 @@ const mainPin = L.marker(
   }
 );
 
-const loadMap = (pinsCount) => {
+const adPinIcon = L.icon ({
+  iconUrl: './img/pin.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
+
+const pinLayer = L.layerGroup().addTo(map);
+
+const createPin = (point) => {
+  const lat = point.location.lat;
+  const lng = point.location.lng;
+  const marker = L.marker(
+    {
+      lat,
+      lng,
+    },
+    {
+      icon: adPinIcon,
+    }
+  );
+  marker
+    .addTo(pinLayer)
+    .bindPopup(createCard(point));
+};
+
+const loadMap = () => {
+
+  pinLayer.clearLayers();
 
   const adress = document.querySelector('#address');
 
@@ -53,36 +80,11 @@ const loadMap = (pinsCount) => {
     adress.value = `${latPoint  } ${ lngPoint}`;
   });
 
-  const adPinIcon = L.icon ({
-    iconUrl: './img/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-  });
-
-  const pinLayer = L.layerGroup().addTo(map);
-
-
-  const createPin = (point) => {
-    const lat = point.location.lat;
-    const lng = point.location.lng;
-    const marker = L.marker(
-      {
-        lat,
-        lng,
-      },
-      {
-        icon: adPinIcon,
-      }
-    );
-    marker
-      .addTo(pinLayer)
-      .bindPopup(createCard(point));
-  };
-  getData(createPin, showAlert, pinsCount);
 };
 
 
 const resetMap = () => {
+  loadMap();
   map.setView({
     lat: TOKYO_CENTER_POINT.lat,
     lng: TOKYO_CENTER_POINT.lng,
@@ -91,6 +93,7 @@ const resetMap = () => {
     lat: TOKYO_CENTER_POINT.lat,
     lng: TOKYO_CENTER_POINT.lng,
   });
+  mapFiltersForm.reset();
 };
 
-export {loadMap, resetMap};
+export {loadMap, resetMap, createPin};
