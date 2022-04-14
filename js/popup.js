@@ -8,6 +8,7 @@ const isPressedEskKey  = () => {
 };
 
 const onClick = () => {
+
   removePopup();
 };
 
