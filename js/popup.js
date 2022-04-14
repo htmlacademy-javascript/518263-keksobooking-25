@@ -16,6 +16,7 @@ function removePopup  () {
   const leafletPopup =  document.querySelector('.leaflet-popup');
 
   if (leafletPopup) {
+
     leafletPopup.remove();
   }
 
