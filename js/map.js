@@ -32,6 +32,7 @@ const adPinIcon = L.icon ({
 const pinLayer = L.layerGroup().addTo(map);
 
 const createPin = (point) => {
+
   const lat = point.location.lat;
   const lng = point.location.lng;
   const marker = L.marker(
