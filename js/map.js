@@ -82,6 +82,7 @@ const loadMap = () => {
 
 };
 
+
 const resetMap = () => {
   mapFiltersForm.reset();
   loadMap();
