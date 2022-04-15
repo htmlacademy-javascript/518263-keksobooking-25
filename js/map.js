@@ -93,8 +93,12 @@ const resetMap = () => {
     lat: TOKYO_CENTER_POINT.lat,
     lng: TOKYO_CENTER_POINT.lng,
   });
-  address.value  = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
-  address.placeholder  = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
+
+  setTimeout( () => {
+    address.value  = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
+    address.placeholder  = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
+  }, 1);
+
 };
 
 export {loadMap, resetMap, createPin};
