@@ -48,16 +48,16 @@ const createPin = (point) => {
     .bindPopup(createCard(point));
 };
 
+const address = document.querySelector('#address');
+
 const loadMap = () => {
 
   pinLayer.clearLayers();
 
-  const adress = document.querySelector('#address');
-
   map
     .on('load', () => {
       activeMode();
-      adress.value = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
+      address.value = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
     })
     .setView({
       lat: TOKYO_CENTER_POINT.lat,
@@ -77,13 +77,13 @@ const loadMap = () => {
   mainPin.on('move', (evt) => {
     const latPoint = evt.target.getLatLng().lat.toFixed(5);
     const lngPoint = evt.target.getLatLng().lng.toFixed(5);
-    adress.value = `${latPoint  } ${ lngPoint}`;
+    address.value = `${latPoint  } ${ lngPoint}`;
   });
 
 };
 
-
 const resetMap = () => {
+  mapFiltersForm.reset();
   loadMap();
   map.setView({
     lat: TOKYO_CENTER_POINT.lat,
@@ -93,7 +93,8 @@ const resetMap = () => {
     lat: TOKYO_CENTER_POINT.lat,
     lng: TOKYO_CENTER_POINT.lng,
   });
-  mapFiltersForm.reset();
+  address.value  = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
+  address.placeholder  = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
 };
 
 export {loadMap, resetMap, createPin};
