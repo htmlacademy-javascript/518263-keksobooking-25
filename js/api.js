@@ -1,9 +1,10 @@
 import {resetButtonClick} from './form.js';
 import { getFiltredList } from './filter.js';
+import {SERVER_COMMUNICATE_LINKS} from './const.js';
 
 
 const getData = (onSuccess, onFail, PINS_COUNT) => {
-  fetch('https://25.javascript.pages.academy/keksobooking/data')
+  fetch(SERVER_COMMUNICATE_LINKS.get)
     .then((response) => response.json())
     .then((pins) => {
       getFiltredList(pins)
@@ -17,7 +18,7 @@ const getData = (onSuccess, onFail, PINS_COUNT) => {
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    'https://25.javascript.pages.academy/keksobooking',
+    SERVER_COMMUNICATE_LINKS.send,
     {
       method: 'POST',
       body,

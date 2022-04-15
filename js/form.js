@@ -19,9 +19,7 @@ const validateForm = () => {
 
   //========================Валидация заголовка========================
 
-  function validateTitle (value) {
-    return value.length >= 30 && value.length <= 100;
-  }
+  const validateTitle = (value) => value.length >= 30 && value.length <= 100;
 
   pristine.addValidator(
     adForm.querySelector('#title'),
@@ -34,33 +32,33 @@ const validateForm = () => {
   const guestsCapacityField = adForm.querySelector('#capacity');
   const roomNumberField = adForm.querySelector('#room_number');
 
-  function validateRooms() {
+  const validateRooms = () => {
     const roomNumber = adForm.querySelector('#room_number').value;
     const guestsCapacity = adForm.querySelector('#capacity').value;
     return ROOMS_AND_GUEST[roomNumber].includes(guestsCapacity);
-  }
+  };
 
-  function printErrorRoomsMessage() {
+  const printErrorRoomsMessage = () => {
     if (roomNumberField.value === '100' || guestsCapacityField.value === '0') {
       return 'Не для гостей';
     }
     return  `Мало комнат для ${  guestsCapacityField.value  } гостей`;
-  }
+  };
 
-  function printErrorGuestsMessage() {
+  const printErrorGuestsMessage = () => {
     if (guestsCapacityField.value === '0' || roomNumberField.value === '100') {
       return '';
     }
     return  `Много гостей для ${  roomNumberField.value  } комнат`;
-  }
+  };
 
   pristine.addValidator(roomNumberField, validateRooms, printErrorRoomsMessage);
   pristine.addValidator(guestsCapacityField, validateRooms, printErrorGuestsMessage);
 
-  function validateRoomsGuest() {
+  const validateRoomsGuest = () => {
     pristine.validate(roomNumberField);
     pristine.validate(guestsCapacityField);
-  }
+  };
 
   roomNumberField.addEventListener('change', validateRoomsGuest);
   guestsCapacityField.addEventListener('change', validateRoomsGuest);
@@ -70,28 +68,26 @@ const validateForm = () => {
   const typeField = adForm.querySelector('#type');
   const priceField = adForm.querySelector('#price');
 
-  function checkType() {
+  const checkType = () => {
     const type = typeField.value;
     priceField.placeholder = TYPES_PRICE[type];
     priceField.min = TYPES_PRICE[type];
-  }
+  };
 
 
-  function getMinPrice(){
+  const getMinPrice = () =>{
     const type = typeField.value;
     priceField.min = TYPES_PRICE[type];
     return TYPES_PRICE[type] <= priceField.value;
-  }
+  };
 
-  function getErrorPriceMessage() {
-    return `Минимальная цена за ночь ${  priceField.min}`;
-  }
+  const getErrorPriceMessage = () => `Минимальная цена за ночь ${  priceField.min}`;
 
   pristine.addValidator(priceField, getMinPrice, getErrorPriceMessage);
 
-  function validatePrice() {
+  const validatePrice = () => {
     pristine.validate(priceField);
-  }
+  };
 
   noUiSlider.create(slider, {
     range: {
@@ -200,9 +196,9 @@ const validateForm = () => {
 
 const resetButtonClick = () => {
   adForm.reset();
-  resetMap();
   slider.noUiSlider.reset();
   resetPhotosreview();
+  resetMap();
 };
 
 const resetButton = document.querySelector('.ad-form__reset');

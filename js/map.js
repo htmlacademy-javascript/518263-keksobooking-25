@@ -32,6 +32,7 @@ const adPinIcon = L.icon ({
 const pinLayer = L.layerGroup().addTo(map);
 
 const createPin = (point) => {
+
   const lat = point.location.lat;
   const lng = point.location.lng;
   const marker = L.marker(
@@ -48,16 +49,16 @@ const createPin = (point) => {
     .bindPopup(createCard(point));
 };
 
+const address = document.querySelector('#address');
+
 const loadMap = () => {
 
   pinLayer.clearLayers();
 
-  const adress = document.querySelector('#address');
-
   map
     .on('load', () => {
       activeMode();
-      adress.value = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
+      address.value = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
     })
     .setView({
       lat: TOKYO_CENTER_POINT.lat,
@@ -69,6 +70,7 @@ const loadMap = () => {
     {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>',
     },
+
   ).addTo(map);
 
 
@@ -77,13 +79,14 @@ const loadMap = () => {
   mainPin.on('move', (evt) => {
     const latPoint = evt.target.getLatLng().lat.toFixed(5);
     const lngPoint = evt.target.getLatLng().lng.toFixed(5);
-    adress.value = `${latPoint  } ${ lngPoint}`;
+    address.value = `${latPoint  } ${ lngPoint}`;
   });
 
 };
 
 
 const resetMap = () => {
+  mapFiltersForm.reset();
   loadMap();
   map.setView({
     lat: TOKYO_CENTER_POINT.lat,
@@ -93,7 +96,12 @@ const resetMap = () => {
     lat: TOKYO_CENTER_POINT.lat,
     lng: TOKYO_CENTER_POINT.lng,
   });
-  mapFiltersForm.reset();
+
+  setTimeout( () => {
+    address.value  = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
+    address.placeholder  = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
+  }, 1);
+
 };
 
 export {loadMap, resetMap, createPin};

@@ -33,7 +33,7 @@ const showPopup = (result) => {
     .content.querySelector(`.${  result}`).cloneNode(true);
   document.body.append(messageTemplate);
   document.addEventListener('click', onClick);
-  document.addEventListener('click', isPressedEskKey);
+  document.addEventListener('keydown', isPressedEskKey);
 };
 
 

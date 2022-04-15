@@ -39,5 +39,9 @@ const TOKYO_CENTER_POINT = {
   lng:  139.76868175980965,
 };
 
+const SERVER_COMMUNICATE_LINKS = {
+  send: 'https://25.javascript.pages.academy/keksobooking',
+  get: 'https://25.javascript.pages.academy/keksobooking/data'
+};
 
-export {TYPES, CHECKS_TIME, FEATURES, PHOTOS, TRANSLATED_TYPES, TYPES_PRICE, ROOMS_AND_GUEST, TOKYO_CENTER_POINT};
+export {TYPES, CHECKS_TIME, FEATURES, PHOTOS, TRANSLATED_TYPES, TYPES_PRICE, ROOMS_AND_GUEST, TOKYO_CENTER_POINT, SERVER_COMMUNICATE_LINKS};

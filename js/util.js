@@ -15,7 +15,7 @@ const getRandomPositiveFloat =  (a, b, digits = 1) => {
 
   const result = Math.random() * (upper - lower) + lower;
 
-  return +result.toFixed(digits);
+  return Number(result).toFixed(digits);
 };
 
 const getRandomArray = (baseArray) => {
@@ -52,6 +52,7 @@ const showAlert = (message) => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 };
+
 
 const  debounce = (callback, timeoutDelay = 1000) => {
   let timeoutId;
