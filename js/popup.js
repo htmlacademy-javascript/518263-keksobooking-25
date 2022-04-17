@@ -7,7 +7,7 @@ const isPressedEskKey  = () => {
   }
 };
 
-const onClick = () => {
+const onClickRemove = () => {
 
   removePopup();
 };
@@ -24,7 +24,7 @@ function removePopup  () {
   if (document.querySelector('.popup')) {
     document.querySelector('.popup').remove();
   }
-  document.removeEventListener('click', onClick);
+  document.removeEventListener('click', onClickRemove);
   document.removeEventListener('click', isPressedEskKey);
 }
 
@@ -32,7 +32,7 @@ const showPopup = (result) => {
   const messageTemplate = document.querySelector(`#${  result}`)
     .content.querySelector(`.${  result}`).cloneNode(true);
   document.body.append(messageTemplate);
-  document.addEventListener('click', onClick);
+  document.addEventListener('click', onClickRemove);
   document.addEventListener('keydown', isPressedEskKey);
 };
 

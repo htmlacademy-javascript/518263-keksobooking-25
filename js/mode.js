@@ -6,7 +6,7 @@ const fieldSets = form.querySelectorAll('.ad-form__element');
 const mapFilters = document.querySelector('.map__filters');
 const mapFiltersFields = Array.from(mapFilters.children);
 
-const disableMode = () => {
+const getDisableMode = () => {
 
   const disableActiveField = (field) => {
     field.setAttribute('disabled', 'disabled');
@@ -23,7 +23,7 @@ const disableMode = () => {
   });
 };
 
-const activeMode = () => {
+const getActiveMode = () => {
 
   form.classList.remove('ad-form--disabled');
   mapFilters.classList.remove('map__filters--disabled');
@@ -34,4 +34,4 @@ const activeMode = () => {
 
 };
 
-export {disableMode, activeMode};
+export {getDisableMode, getActiveMode};
