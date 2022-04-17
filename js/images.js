@@ -6,7 +6,7 @@ const adForm = document.querySelector('.ad-form');
 const avatarFileChooser = adForm.querySelector('#avatar');
 const previewAvatarContainer = adForm.querySelector('.ad-form-header__preview');
 
-const defaultAvatarBackground = previewAvatarContainer.innerHTML;
+const defaultAvatarBackground = previewAvatarContainer.querySelector('img') ;
 const defaultAvatarPadding = previewAvatarContainer.style.padding;
 
 const createImage = (src) => {
@@ -57,7 +57,8 @@ const getHousePhotosPreview = () => {
 
 const resetPhotosreview = () => {
 
-  previewAvatarContainer.innerHTML = defaultAvatarBackground;
+  previewAvatarContainer.removeChild(previewAvatarContainer.children[0]);
+  previewAvatarContainer.append(defaultAvatarBackground);
   previewAvatarContainer.style.padding = defaultAvatarPadding;
   if (housePhotosContainer.children.length > 0) {
     housePhotosContainer.removeChild(housePhotosContainer.children[0]);

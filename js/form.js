@@ -1,4 +1,4 @@
-import {TYPES_PRICE, ROOMS_AND_GUEST} from './const.js';
+import {TYPES_PRICE, ROOMS_AND_GUEST, POPUP_REMOVE_TIME} from './const.js';
 import {sendData} from './api.js';
 import {showErrorMessage, showSuccessMessage, removePopup} from './popup.js';
 import {resetMap} from './map.js';
@@ -40,14 +40,14 @@ const validateForm = () => {
 
   const printErrorRoomsMessage = () => {
     if (roomNumberField.value === '100' || guestsCapacityField.value === '0') {
-      return 'Не для гостей';
+      return '';
     }
     return  `Мало комнат для ${  guestsCapacityField.value  } гостей`;
   };
 
   const printErrorGuestsMessage = () => {
     if (guestsCapacityField.value === '0' || roomNumberField.value === '100') {
-      return '';
+      return '100 комнат не для гостей';
     }
     return  `Много гостей для ${  roomNumberField.value  } комнат`;
   };
@@ -129,8 +129,15 @@ const validateForm = () => {
     if (evt.target.tagName === 'SELECT') {
       checkType();
       validatePrice();
+      if (!priceField.value) {
+        slider.noUiSlider.set(priceField.min);
+        priceField.value = '';
+      }
     }
   });
+
+  priceField.value = '';
+
 
   //========================Добавление фотографий========================
 
@@ -181,7 +188,7 @@ const validateForm = () => {
 
           setTimeout( () => {
             removePopup();
-          }, 2000);
+          }, POPUP_REMOVE_TIME);
         },
         () => {
           showErrorMessage();

@@ -1,11 +1,11 @@
-import {disableMode} from './mode.js';
+import {getDisableMode} from './mode.js';
 import {loadMap, createPin} from './map.js';
 import {showAlert} from './util.js';
 import {getData} from './api.js';
 import { debounce } from './util.js';
 
 
-disableMode();
+getDisableMode();
 
 const mapFiltersForm = document.querySelector('.map__filters');
 

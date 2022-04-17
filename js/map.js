@@ -1,5 +1,5 @@
-import {activeMode} from './mode.js';
-import {TOKYO_CENTER_POINT} from './const.js';
+import {getActiveMode} from './mode.js';
+import {TOKYO_CENTER_POINT, MAIN_PIN_ICON_SIZE, MAIN_PIN_ICON_ACHOR, AD_PIN_ICON_SIZE, AD_PIN_ICON_ACHOR} from './const.js';
 import {createCard} from './card.js';
 
 
@@ -8,8 +8,8 @@ const mapFiltersForm = document.querySelector('.map__filters');
 
 const mainPinIcon = L.icon({
   iconUrl: './img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
+  iconSize: [MAIN_PIN_ICON_SIZE.width, MAIN_PIN_ICON_SIZE.height],
+  iconAnchor: [MAIN_PIN_ICON_ACHOR.horizontal, MAIN_PIN_ICON_ACHOR.vertical],
 });
 
 const mainPin = L.marker(
@@ -25,8 +25,8 @@ const mainPin = L.marker(
 
 const adPinIcon = L.icon ({
   iconUrl: './img/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconSize: [AD_PIN_ICON_SIZE.width, AD_PIN_ICON_SIZE.height],
+  iconAnchor: [AD_PIN_ICON_ACHOR.horizontal, AD_PIN_ICON_ACHOR.vertical],
 });
 
 const pinLayer = L.layerGroup().addTo(map);
@@ -57,7 +57,7 @@ const loadMap = () => {
 
   map
     .on('load', () => {
-      activeMode();
+      getActiveMode();
       address.value = `${TOKYO_CENTER_POINT.lat.toFixed(5)  } ${ TOKYO_CENTER_POINT.lng.toFixed(5)}`;
     })
     .setView({
